@@ -1,0 +1,12 @@
+[theme]
+base = "dark"
+primaryColor = "#38d5ff"
+backgroundColor = "#07111f"
+secondaryBackgroundColor = "#0c172a"
+textColor = "#eaf2ff"
+font = "sans serif"
+
+[server]
+headless = true
+address = "localhost"
+port = 4173

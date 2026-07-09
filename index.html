@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Data Cleaning and Visualization System</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Workspace navigation">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">AD</span>
+          <div>
+            <strong>AutoData AI</strong>
+            <span>Clean. Analyze. Present.</span>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <a href="#dashboard" class="active">Dashboard</a>
+          <a href="#cleaning">Data Cleaning</a>
+          <a href="#predictive">Predictive</a>
+          <a href="#segments">Segments</a>
+          <a href="#assistant">Assistant</a>
+        </nav>
+
+        <div class="upload-panel">
+          <label for="fileInput">Upload CSV dataset</label>
+          <input id="fileInput" type="file" accept=".csv,text/csv">
+          <button id="sampleBtn" type="button">Load Sample Data</button>
+        </div>
+
+        <div class="export-panel">
+          <button id="pdfBtn" type="button" disabled>Generate PDF Report</button>
+          <button id="pptBtn" type="button" disabled>Export PowerPoint</button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">AI-powered analytics workspace</p>
+            <h1>Automated Data Cleaning and Visualization System</h1>
+          </div>
+          <div class="status-card">
+            <span>Data Quality</span>
+            <strong id="qualityBadge">--</strong>
+          </div>
+        </header>
+
+        <section id="dashboard" class="metrics-grid" aria-label="Summary metrics">
+          <article class="metric">
+            <span>Rows</span>
+            <strong id="rowsMetric">0</strong>
+          </article>
+          <article class="metric">
+            <span>Columns</span>
+            <strong id="colsMetric">0</strong>
+          </article>
+          <article class="metric">
+            <span>Missing Fixed</span>
+            <strong id="missingMetric">0</strong>
+          </article>
+          <article class="metric">
+            <span>Duplicates Removed</span>
+            <strong id="duplicateMetric">0</strong>
+          </article>
+          <article class="metric">
+            <span>Outliers Detected</span>
+            <strong id="outlierMetric">0</strong>
+          </article>
+        </section>
+
+        <section class="toolbar" aria-label="Dashboard controls">
+          <label>
+            Numeric field
+            <select id="numericSelect"></select>
+          </label>
+          <label>
+            Category field
+            <select id="categorySelect"></select>
+          </label>
+          <label>
+            Target field
+            <select id="targetSelect"></select>
+          </label>
+          <button id="cleanBtn" type="button" disabled>Run Cleaning</button>
+        </section>
+
+        <section class="workspace-grid">
+          <article class="panel chart-panel">
+            <div class="panel-title">
+              <h2>Auto Dashboard Builder</h2>
+              <span id="chartCaption">Upload a CSV to generate charts.</span>
+            </div>
+            <div class="chart-stack">
+              <canvas id="histogramChart" width="680" height="300" aria-label="Distribution chart"></canvas>
+              <canvas id="categoryChart" width="680" height="240" aria-label="Category chart"></canvas>
+            </div>
+          </article>
+
+          <article id="cleaning" class="panel">
+            <div class="panel-title">
+              <h2>Cleaning Summary</h2>
+              <span>Missing values, duplicates, and outliers</span>
+            </div>
+            <ul id="cleaningList" class="insight-list">
+              <li>Upload a dataset to begin automated profiling.</li>
+            </ul>
+            <canvas id="qualityChart" width="520" height="220" aria-label="Quality score chart"></canvas>
+          </article>
+        </section>
+
+        <section class="workspace-grid">
+          <article id="predictive" class="panel">
+            <div class="panel-title">
+              <h2>Predictive Analytics</h2>
+              <span>Regression signal and forecast</span>
+            </div>
+            <div id="predictiveStats" class="stats-box">No model has been generated yet.</div>
+            <canvas id="forecastChart" width="620" height="280" aria-label="Forecast chart"></canvas>
+          </article>
+
+          <article id="segments" class="panel">
+            <div class="panel-title">
+              <h2>Customer Segmentation</h2>
+              <span>K-means clustering on numeric behavior</span>
+            </div>
+            <div id="segmentSummary" class="stats-box">Segments will appear after a dataset is loaded.</div>
+            <canvas id="segmentChart" width="520" height="280" aria-label="Segment scatter chart"></canvas>
+          </article>
+        </section>
+
+        <section class="workspace-grid assistant-grid">
+          <article class="panel">
+            <div class="panel-title">
+              <h2>Actionable Insights</h2>
+              <span>Generated from the cleaned data</span>
+            </div>
+            <ul id="insightsList" class="insight-list">
+              <li>Insights will be generated after upload.</li>
+            </ul>
+          </article>
+
+          <article id="assistant" class="panel assistant-panel">
+            <div class="panel-title">
+              <h2>AI Chat Assistant</h2>
+              <span>Ask about quality, sales, forecasts, or segments</span>
+            </div>
+            <div id="chatLog" class="chat-log" aria-live="polite">
+              <div class="message assistant">Upload data, then ask me what changed, what to fix, or what to present.</div>
+            </div>
+            <form id="chatForm" class="chat-form">
+              <input id="chatInput" type="text" placeholder="Ask for insight on missing values, forecast, or segments">
+              <button type="submit">Ask</button>
+            </form>
+          </article>
+        </section>
+
+        <section class="panel table-panel">
+          <div class="panel-title">
+            <h2>Cleaned Data Preview</h2>
+            <span id="tableCaption">First 25 cleaned records</span>
+          </div>
+          <div class="table-wrap">
+            <table id="dataTable">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
